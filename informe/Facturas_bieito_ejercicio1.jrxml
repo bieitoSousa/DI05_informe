@@ -84,8 +84,11 @@
 					<reportElement mode="Transparent" x="48" y="107" width="472" height="20" uuid="2ff8bbd5-4d0a-421b-8e45-f2b8c763165a"/>
 				</rectangle>
 				<textField evaluationTime="Group" evaluationGroup="Facturas">
-					<reportElement x="424" y="78" width="100" height="20" uuid="7cbaa31c-841e-40ae-a756-9ace0664c1f5"/>
-					<textFieldExpression><![CDATA[$V{TOTAL_1}]]></textFieldExpression>
+					<reportElement x="419" y="107" width="100" height="20" uuid="7cbaa31c-841e-40ae-a756-9ace0664c1f5"/>
+					<textElement textAlignment="Center">
+						<font isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$V{TOTAL_1}+"€  "]]></textFieldExpression>
 				</textField>
 			</band>
 		</groupHeader>
@@ -161,6 +164,9 @@
 				</rectangle>
 				<textField>
 					<reportElement x="441" y="10" width="100" height="20" uuid="1ed05ef2-296b-4f78-b57c-c42820a89e91"/>
+					<textElement>
+						<font isBold="true" isItalic="false"/>
+					</textElement>
 					<textFieldExpression><![CDATA[$F{TOTAL}+"€  "]]></textFieldExpression>
 				</textField>
 			</band>
