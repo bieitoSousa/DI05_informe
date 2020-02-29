@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Facturas_bieito" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="c3134807-9471-4a85-90a8-d1c4e79c9b2d">
+	<property name="ireport.zoom" value="1.331000000000005"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["D:\\Entregas\\DI05_informe\\informe\\"]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[Select ADDRESS.ID, ADDRESS.FIRSTNAME,ADDRESS.LASTNAME,ADDRESS.STREET,ADDRESS.CITY from ADDRESS INNER JOIN DOCUMENT ON DOCUMENT.ADDRESSID=ADDRESS.ID ORDER BY ADDRESS.ID ;]]>
+	</queryString>
+	<field name="ID" class="java.lang.Integer"/>
+	<field name="FIRSTNAME" class="java.lang.String"/>
+	<field name="LASTNAME" class="java.lang.String"/>
+	<field name="STREET" class="java.lang.String"/>
+	<field name="CITY" class="java.lang.String"/>
+	<group name="ADDRESS" isStartNewPage="true" isReprintHeaderOnEachPage="true">
+		<groupExpression><![CDATA[$F{ID}]]></groupExpression>
+		<groupHeader>
+			<band height="50">
+				<textField>
+					<reportElement x="118" y="5" width="100" height="20" uuid="b6bb30df-2207-4e1a-8bff-284f13cd29d4"/>
+					<textFieldExpression><![CDATA[$F{FIRSTNAME}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="6" y="25" width="100" height="20" uuid="d4467167-0d4d-4e9b-935a-da6634d769a6"/>
+					<text><![CDATA[LASTNAME]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="118" y="26" width="100" height="20" uuid="e58dab8b-bee0-4019-99d9-3ae4e9a5b473"/>
+					<textFieldExpression><![CDATA[$F{LASTNAME}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="225" y="5" width="100" height="20" uuid="b4747c0c-9a2a-4407-b0f9-1cad6810d9aa"/>
+					<text><![CDATA[STREET]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="325" y="5" width="100" height="20" uuid="6652dd8b-b5af-4c22-b492-f885e01a1560"/>
+					<textFieldExpression><![CDATA[$F{STREET}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="225" y="25" width="100" height="20" uuid="ac529590-7595-440a-b8ca-f89f7ba82c83"/>
+					<text><![CDATA[CITY]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="325" y="26" width="100" height="20" uuid="a11af687-ea5c-48e2-9e1f-57d756d06767"/>
+					<textFieldExpression><![CDATA[$F{CITY}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="497" y="5" width="53" height="20" uuid="aa515fda-3989-46f4-a05a-7f8fbb485234"/>
+					<textFieldExpression><![CDATA[$F{ID}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="450" y="5" width="47" height="20" uuid="05a27900-7ccb-48c6-ab6d-6fde86933e4e"/>
+					<text><![CDATA[ID:]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="6" y="5" width="100" height="20" uuid="de688824-6148-4247-a898-ec89fee58ef2"/>
+					<text><![CDATA[FIRSTNAME]]></text>
+				</staticText>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band height="50"/>
+		</groupFooter>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="26" splitType="Stretch">
+			<staticText>
+				<reportElement x="218" y="0" width="101" height="24" uuid="0f325cbb-757f-4e80-875e-d1118833d27a"/>
+				<textElement>
+					<font size="18" isBold="true" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[Factura]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="28" splitType="Stretch">
+			<staticText>
+				<reportElement x="6" y="0" width="154" height="25" uuid="2df8e48a-430d-4d67-b0cb-a82bdf0a3885"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[DATOS PERSONALES]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="20" splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="283" splitType="Stretch">
+			<subreport>
+				<reportElement x="17" y="21" width="493" height="230" uuid="b4573211-eb49-448a-8f1d-bee2615a306b"/>
+				<subreportParameter name="AddressID">
+					<subreportParameterExpression><![CDATA[$F{ID}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA["Facturas_bieito_ejercicio4_subinforme.jasper"]]></subreportExpression>
+			</subreport>
+			<break>
+				<reportElement x="0" y="269" width="100" height="1" uuid="8762d471-c974-4168-a53d-c4aee885b89a"/>
+			</break>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="50">
+			<break>
+				<reportElement x="0" y="27" width="100" height="1" uuid="0ac05239-f492-4119-8d25-4385ecba3ff2"/>
+			</break>
+		</band>
+	</columnFooter>
+</jasperReport>

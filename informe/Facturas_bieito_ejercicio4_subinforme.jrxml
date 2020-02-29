@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Facturas_bieito_ejercicio4_subinforme" pageWidth="555" pageHeight="802" columnWidth="555" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="4667d923-3015-44e0-9934-217c715393df">
+	<property name="ireport.zoom" value="3.797498335832416"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="5"/>
+	<parameter name="AddressID" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[Select DOCUMENT.ADDRESSID, DOCUMENT.ID, PRODUCT.NAME, PRODUCT.COST, POSITIONS.QUANTITY,POSITIONS.PRICE,POSITIONS.POSITIONNO  from POSITIONS INNER JOIN DOCUMENT ON DOCUMENT.ID=POSITIONS.DOCUMENTID INNER JOIN PRODUCT ON PRODUCT.ID=POSITIONS.PRODUCTID  WHERE DOCUMENT.ADDRESSID = $P{AddressID} ORDER BY  DOCUMENT.ADDRESSID, DOCUMENT.ID, POSITIONS.POSITIONNO;]]>
+	</queryString>
+	<field name="ADDRESSID" class="java.lang.Integer"/>
+	<field name="ID" class="java.lang.Integer"/>
+	<field name="NAME" class="java.lang.String"/>
+	<field name="COST" class="java.lang.Float"/>
+	<field name="QUANTITY" class="java.lang.Integer"/>
+	<field name="PRICE" class="java.math.BigDecimal"/>
+	<field name="POSITIONNO" class="java.lang.Integer"/>
+	<variable name="variable1" class="java.lang.String"/>
+	<group name="DOCUMENT" isStartNewPage="true">
+		<groupExpression><![CDATA[$F{ID}]]></groupExpression>
+		<groupHeader>
+			<band height="16">
+				<staticText>
+					<reportElement x="279" y="0" width="57" height="16" uuid="1b2bd9bb-8d11-4c50-aa3c-1d8f3797d891"/>
+					<text><![CDATA[TOTAL]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="197" y="0" width="57" height="16" uuid="e610462f-d217-4780-9ed7-4046d5c779a6"/>
+					<text><![CDATA[PRECIO]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="142" y="0" width="53" height="16" uuid="bd5a66f4-bda2-4aad-90b8-0a5825bf10ab"/>
+					<text><![CDATA[CANTIDAD]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="86" y="0" width="56" height="14" uuid="b3837055-2e80-4d2b-8109-a00d3904f63f"/>
+					<text><![CDATA[NOMBRE]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="27" y="0" width="59" height="14" uuid="99a80bde-5160-47e0-96eb-47ea451b06e1"/>
+					<text><![CDATA[NUM]]></text>
+				</staticText>
+			</band>
+		</groupHeader>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<pageHeader>
+		<band height="43" splitType="Stretch">
+			<textField>
+				<reportElement x="15" y="11" width="182" height="20" uuid="5c8582d2-5aae-425a-9b38-b0fede8f9943"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["CLIENT ID : ["+$F{ADDRESSID}+"]"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="220" y="11" width="135" height="20" uuid="667b2f53-b22d-4c59-b73f-233ad921cdc7"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Factura Numero["+$F{ID}+"]"]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<detail>
+		<band height="23" splitType="Stretch">
+			<textField>
+				<reportElement x="87" y="3" width="56" height="20" uuid="966d09b2-828a-4517-92bd-4be3c645c7a4"/>
+				<textFieldExpression><![CDATA[$F{NAME}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="142" y="3" width="53" height="20" uuid="120cc918-2db3-4412-89f0-b6f4f559b526"/>
+				<textFieldExpression><![CDATA[$F{QUANTITY}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="195" y="3" width="57" height="20" uuid="99c13ce0-c24f-4f40-a292-dd4d79da01e1"/>
+				<textFieldExpression><![CDATA[$F{COST}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="26" y="3" width="60" height="20" uuid="ab7277b7-ffb4-4ee7-8297-ab671d4c2cf3"/>
+				<textFieldExpression><![CDATA[$F{POSITIONNO}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="265" y="3" width="172" height="20" uuid="193f1c96-feda-4fa9-9f16-573934553751"/>
+				<textFieldExpression><![CDATA[$F{QUANTITY}*$F{COST}+"€  "]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>
